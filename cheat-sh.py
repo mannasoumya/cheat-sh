@@ -4,8 +4,9 @@ import urllib.parse
 import re , os
 import random
 import uuid
+import traceback
+from jokes import jokes_arr
 
-jokes_path = "jokes.txt"
 dump_file = False
 
 joke_mode = False
@@ -29,15 +30,7 @@ def dump_to_console(s,offset=0):
             print(i , end="")
 
 def get_joke():
-    content = ""
-    try:
-        with open(jokes_path,'r') as f:
-            content = f.read()
-        jokes = content.split("\nMANNA\n")
-        return jokes[random.randint(0,len(jokes)-1)]
-    except Exception as e:
-        print(e)
-        print("\nOOPS... could not find joke")
+    return jokes_arr[random.randint(0,len(jokes_arr)-1)]
 
 def usage(exit_code):
     print(f"\nUsage: python {sys.argv[0]} '<search-query>' [option]")
